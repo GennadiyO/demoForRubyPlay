@@ -30,7 +30,7 @@ public class NightClubController {
     @GetMapping("/show/visitorsWithMoreThan2DiffNightClubs")
     public ResponseEntity<List<String>> showVisitorsWithMoreThan2DiffNightClubs() {
 
-        List<String> visitors = visitorService.showAllVisorsWhoVisitNumberOfNightClubs(1);
+        List<String> visitors = visitorService.showAllVisorsWhoVisitNumberOfNightClubs(2);
 
         return new ResponseEntity<>(visitors, HttpStatus.OK);
     }
