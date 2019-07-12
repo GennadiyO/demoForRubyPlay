@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/visits")
 public class VisitsController {
@@ -24,30 +22,6 @@ public class VisitsController {
         visitsService.registerVisit(userName, nightClubName);
 
         return new ResponseEntity<>("registered", HttpStatus.OK);
-    }
-
-    @GetMapping("/visitors")
-    public ResponseEntity<List<String>> showAllVisitors(@RequestParam("nightClubName") String nightClubName){
-
-        List<String> visitors = visitsService.showAllVisitors(nightClubName);
-
-        return new ResponseEntity<>(visitors, HttpStatus.OK);
-    }
-
-    @GetMapping("/visitedNightClubs")
-    public ResponseEntity<List<String>> showAllVisitedNightClubs(@RequestParam("userName") String userName) {
-
-        List<String> nightClubs = visitsService.showAllVisitedNightClubs(userName);
-
-        return new ResponseEntity<>(nightClubs, HttpStatus.OK);
-    }
-
-    @GetMapping("/notVisitedNightClubs")
-    public ResponseEntity<List<String>> showNotVisitedNightClubs(@RequestParam("userName") String userName){
-
-        List<String> nightClubs = visitsService.showNotVisitedNightClubs(userName);
-
-        return new ResponseEntity<>(nightClubs, HttpStatus.OK);
     }
 
     @Autowired

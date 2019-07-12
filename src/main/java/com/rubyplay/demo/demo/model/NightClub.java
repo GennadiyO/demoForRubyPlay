@@ -1,16 +1,14 @@
 package com.rubyplay.demo.demo.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "visits")
-public class Visits {
-
+@Table(name = "nightclubs")
+public class NightClub {
     private int id;
-    private Date time;
-    private String userName;
     private String nightClubName;
+    private List<Visit> visits;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,31 +17,23 @@ public class Visits {
         return id;
     }
 
-    @Column(name = "time")
-    public Date getTime() {
-        return time;
-    }
-
-    @Column(name = "user_name")
-    public String getUserName() {
-        return userName;
-    }
-
     @Column(name = "night_club_name")
     public String getNightClubName() {
         return nightClubName;
     }
 
+    @OneToMany(mappedBy = "nightClub", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    public List<Visit> getVisits() {
+        return visits;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
-    public void setTime(Date time) {
-        this.time = time;
-    }
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
     public void setNightClubName(String nightClubName) {
         this.nightClubName = nightClubName;
+    }
+    public void setVisits(List<Visit> visits) {
+        this.visits = visits;
     }
 }
